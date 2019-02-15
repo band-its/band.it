@@ -1,0 +1,13 @@
+###
+# This is codeowners definition for acceptance of PR process
+#
+
+# Global owners
+
+* @wiatrM @lapek
+
+# Architecture docs changes
+
+/docs/* @wiatrM @lapek
+
+
