@@ -1,6 +1,7 @@
 ![Logo of the project](./docs/images/bandit.png)
 
-# band.it &middot; [![Build Status](https://travis-ci.com/band-its/band.it.svg?branch=master)](https://travis-ci.com/band-its/band.it) [![codecov](https://codecov.io/gh/band-its/band.it/branch/master/graph/badge.svg)](https://codecov.io/gh/band-its/band.it)
+# band.it &middot; [![Build Status](https://travis-ci.com/band-its/band.it.svg?branch=master)](https://travis-ci.com/band-its/band.it) [![codecov](https://codecov.io/gh/band-its/band.it/branch/master/graph/badge.svg)](https://codecov.io/gh/band-its/band.it) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 > OpenSource Music colaboration tool, band it!
 
 A brief description of your project, what it is used for.
@@ -98,4 +99,4 @@ Documents your database design and schemas, relations etc...
 
 ## Licensing
 
-State what the license is and how to find the text version of the license.
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details
