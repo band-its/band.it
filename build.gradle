@@ -1,17 +1,36 @@
-repositories {
-    mavenCentral()
+plugins {
+    id "java"
+    id "idea"
+    id "jacoco"
 }
 
 allprojects {
     group = 'com.band-it'
-    version = '0.0.1-SNAPSHOT'
+    version = '0.0.1'
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     ext {
         springCloudVersion = 'Greenwich.RELEASE'
     }
-    
+
     repositories {
         mavenCentral()
         maven { url 'https://repo.spring.io/milestone' }
     }
 }
+
+jacoco {
+    toolVersion = '0.8.3'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = false
+        csv.enabled = false
+        html.destination = new File("$buildDir/jacoco/report.xml")
+    }
+}
+
+check.dependsOn(jacocoTestReport)

@@ -1,0 +1,11 @@
+language: java
+install: true
+jdk:
+  - openjdk11
+
+before_script:
+  - chmod +x gradlew
+script:
+  - ./gradlew clean check
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
