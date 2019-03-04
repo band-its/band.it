@@ -1,16 +1,20 @@
 package com.bandit.config;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@ExtendWith(SpringExtension.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class ConfigApplicationTests {
-
     @Test
     public void contextLoads() {
     }
 
+    @Test
+    public void a2plus2is4() {
+        Assert.assertEquals(4, ConfigApplication.sum(2, 2));
+    }
 }
