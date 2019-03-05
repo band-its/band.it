@@ -10,8 +10,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build app
-          command: ./gradlew build -x test
+        name: Build app
+        command: ./gradlew build -x test
 
   test:
     docker:
@@ -22,7 +22,6 @@ jobs:
       TERM: dumb
     steps:
       - checkout
-
 
   deploy:
     docker:
@@ -36,12 +35,12 @@ jobs:
 
 workflows:
   version: 2.1
-  ultimate_pipeline:
+  branch_pipeline:
     jobs:
       - build
       - test
         requires:
           - build
       - deploy:
-          requires:
-            - test
+        requires:
+          - test
