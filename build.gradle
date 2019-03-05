@@ -1,0 +1,35 @@
+plugins {
+    id "java"
+    id "idea"
+    id "jacoco"
+}
+
+allprojects {
+    group = 'com.band-it'
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
+    ext {
+        springCloudVersion = 'Greenwich.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+
+    task downloadDependencies() {
+        description 'Download all dependencies to the Gradle cache (speeds up CI process)'
+        doLast {
+            configurations.findAll { it.canBeResolved }.files
+        }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+    }
+}

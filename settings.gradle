@@ -1,0 +1,5 @@
+rootProject.name = 'band-it'
+
+include 'config'
+include 'registry'
+include 'ui-service'
