@@ -13,8 +13,4 @@ public class ConfigApplicationTests {
     public void contextLoads() {
     }
 
-    @Test
-    public void a2plus2is4() {
-        Assert.assertEquals(4, ConfigApplication.sum(2, 2));
-    }
 }

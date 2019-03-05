@@ -12,7 +12,4 @@ public class ConfigApplication {
         SpringApplication.run(ConfigApplication.class, args);
     }
 
-    public static int sum(int a, int b) {
-        return a + b;
-    }
 }
