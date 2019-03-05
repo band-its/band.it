@@ -34,7 +34,7 @@ jobs:
       - checkout
 
 workflows:
-  version: 2.1
+  version: 2
   branch_pipeline:
     jobs:
       - build
