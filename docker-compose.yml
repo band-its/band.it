@@ -1,0 +1,35 @@
+version: '2.1'
+services:
+  config:
+    image: bandits/bandit-config
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  registry:
+    image: bandits/bandit-registry
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+      - 8761:8761
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  ui-service:
+    image: bandits/bandit-ui-service
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+      - 80:4000
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
