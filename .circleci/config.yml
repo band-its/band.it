@@ -38,7 +38,7 @@ workflows:
   branch_pipeline:
     jobs:
       - build
-      - test
+      - test:
         requires:
           - build
       - deploy:
