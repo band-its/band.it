@@ -1,6 +1,6 @@
 ![Logo of the project](./docs/images/bandit.png)
 
-# band.it &middot; [![Build Status](https://travis-ci.com/band-its/band.it.svg?branch=master)](https://travis-ci.com/band-its/band.it) [![CircleCI](https://circleci.com/gh/band-its/band.it.svg?style=shield)](https://circleci.com/gh/band-its/band.it) [![codecov](https://codecov.io/gh/band-its/band.it/branch/master/graph/badge.svg)](https://codecov.io/gh/band-its/band.it) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# band.it &middot; [![Build Status](https://travis-ci.com/band-its/band.it.svg?branch=develop)](https://travis-ci.com/band-its/band.it) [![CircleCI](https://circleci.com/gh/band-its/band.it.svg?style=shield)](https://circleci.com/gh/band-its/band.it) [![codecov](https://codecov.io/gh/band-its/band.it/branch/develop/graph/badge.svg)](https://codecov.io/gh/band-its/band.it) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 > OpenSource Music colaboration tool, band it!
 
