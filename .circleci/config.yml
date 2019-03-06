@@ -9,6 +9,7 @@ jobs:
       TERM: dumb
     steps:
       - checkout
+      - run: chmod +x gradlew
       - run:
           name: Build app
           command: ./gradlew assemble
