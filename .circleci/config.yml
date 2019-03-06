@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.1
 jobs:
   build:
     docker:
@@ -10,10 +12,17 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Build app
-        command: ./gradlew build -x test
+          name: Build app
+          command: ./gradlew assemble
+      - restore_cache:
+          keys:
+              - gradle-{{ checksum "build.gradle" }}
+      - save_cache:
+          paths:
+              - ~/.gradle
+          key: gradle-{{ checksum "build.gradle" }}
 
-  test:
+  test_ut:
     docker:
       - image: circleci/openjdk:11.0.2-jdk
     working_directory: ~/repo
@@ -21,7 +30,46 @@ jobs:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
     steps:
-      - checkout
+      - restore_cache:
+          keys:
+            - gradle-{{ checksum "build.gradle" }}
+      - run:
+          name: Unit Tests
+          command: ./gradlew build -x test
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: gradle-{{ checksum "build.gradle" }}-ut
+
+  test_e2e:
+    docker:
+      - image: circleci/openjdk:11.0.2-jdk
+    working_directory: ~/repo
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - restore_cache:
+          keys:
+            - gradle-{{ checksum "build.gradle" }}
+#      - run:
+#          name: e2e
+#          command: ./gradlew e2etest
+
+  stats:
+    docker:
+      - image: circleci/openjdk:11.0.2-jdk
+    working_directory: ~/repo
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+    steps:
+      - restore_cache:
+          keys:
+            - gradle-{{ checksum "build.gradle" }}-ut
+      - run:
+          name: Codecov report
+          command: bash <(curl -s https://codecov.io/bash)
 
   deploy:
     docker:
@@ -38,9 +86,17 @@ workflows:
   branch_pipeline:
     jobs:
       - build
-      - test:
-        requires:
-          - build
+      - test_ut:
+          requires:
+            - build
+      - test_e2e:
+          requires:
+            - build
+      - stats:
+          requires:
+            - test_ut
+            - test_e2e
       - deploy:
-        requires:
-          - test
+          requires:
+            - test_ut
+            - test_e2e
