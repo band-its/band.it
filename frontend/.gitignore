@@ -19,12 +19,9 @@ speed-measure-plugin.json
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
+debug.log
 testem.log
 /typings
-
-# System Files
-.DS_Store
-Thumbs.db
 
 #ignore or commit?
 package-lock.json

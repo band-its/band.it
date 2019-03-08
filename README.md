@@ -37,6 +37,12 @@ cd band.it/
 docker build .
 ```
 
+Build all without tests.
+
+```shell
+./gradlew build -x test
+```
+
 And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
 
 ### Building

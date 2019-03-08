@@ -4,12 +4,13 @@ plugins {
 }
 
 node {
-    version = '8.9.3'
+    version = '10.15.3'
     download = false // use installed node/npm
 }
 
-jar.dependsOn 'npm_run_build'
-
-jar {
-    from 'dist/todo-ui' into 'static'
+task testCI(type: NpmTask) {
+    args = ['run', 'test-ci']
 }
+
+//clean.dependsOn 'npm_run_clean'
+build.dependsOn 'npm_run_build'
