@@ -126,7 +126,7 @@ jobs:
 #      - run: TODO: frontend e2e tests
 #          name: e2e
 #          command: ./gradlew e2etest
-      - *persist_workspace
+      #- *persist_workspace
 
   test_frontend_ut:
     executor: openjdk
@@ -138,7 +138,7 @@ jobs:
   #      - run: TODO: frontend ut tests
   #          name: e2e
   #          command: ./gradlew ut
-      - *persist_workspace
+      #- *persist_workspace
 
   stats:
     executor: openjdk
