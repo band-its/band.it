@@ -141,7 +141,7 @@ jobs:
       - *restore_repo
       - run:
           name: Codecov report
-          command: bash <(curl -s https://codecov.io/bash
+          command: bash <(curl -s https://codecov.io/bash)
 
   deploy_gke:
     docker:
@@ -163,7 +163,6 @@ jobs:
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
             gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
-      - setup_remote_docker
       - run:
           name: Deploy to Kubernetes
           command: |
