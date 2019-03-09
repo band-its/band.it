@@ -27,3 +27,6 @@ HELP.md
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Helpers ###
+circleci.exe

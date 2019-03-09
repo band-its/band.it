@@ -1,103 +1,187 @@
 version: 2.1
-jobs:
-  build:
+
+# -----------------
+# References for ease of use in below jobs
+references:
+  workspace_root: &workspace_root
+                    /root/app
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+  persist_workspace: &persist_workspace
+    persist_to_workspace:
+      root: *workspace_root
+      paths:
+        - build
+        - /*/build
+  restore_repo: &restore_repo
+    restore_cache:
+      keys:
+        - v1-repo-{{ .Branch }}-{{ .Revision }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo
+  gradle_cache_key: &gradle_cache_key
+                   v1-dependency-gradle-{{ checksum "build.gradle" }}
+  gradle_backup_cache_key: &gradle_backup_cache_key
+                          v1-dependency-gradle
+  restore_gradle_modules: &restore_gradle_modules
+    restore_cache:
+      keys:
+        - *gradle_cache_key
+        - *gradle_backup_cache_key
+  npm_cache_key: &npm_cache_key
+                      v1-dependency-npm-{{ checksum "frontend/package.json" }}   #TODO: correct when anguler will be included
+  npm_backup_cache_key: &npm_backup_cache_key
+                             v1-dependency-npm
+  restore_npm_modules: &restore_npm_modules
+    restore_cache:
+      keys:
+        - *npm_cache_key
+        - *npm_backup_cache_key
+
+# -----------------
+
+# -----------------
+# Executors for job processing...
+executors:
+  openjdk:
     docker:
       - image: circleci/openjdk:11.0.2-jdk
-    working_directory: ~/repo
+    working_directory: /root/app
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
+# -----------------
+
+# -----------------
+# Project jobs
+jobs:
+  checkout_code:
+    executor: openjdk
     steps:
+      - *restore_repo
       - checkout
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+
+  build_deps:
+    executor: openjdk
+    steps:
+      - *restore_repo
+      - *restore_gradle_modules
+      - *restore_npm_modules
+      - run: gradlew downloadDependencies
+      # TODO: here will be npm download dependencies task
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+      - save_cache:
+          paths:
+            - /root/app/.gradle
+          key: *gradle_cache_key
+      # TODO: save node modules in cache here
+
+  build:
+    executor: openjdk
+    steps:
+      - *restore_repo
+      - *restore_gradle_modules
+      - *restore_npm_modules
       - run: chmod +x gradlew
       - run:
-          name: Build app
+          name: Building backend services...
           command: ./gradlew assemble
       - save_cache:
           paths:
-              - ~/.gradle
-          key: gradle-{{ checksum "build.gradle" }}
+              - /root/app/.gradle
+          key: *gradle_cache_key
+      - store_artifacts:
+          path: /root/app/*/build
+          destination: build
 
-  test_ut:
-    docker:
-      - image: circleci/openjdk:11.0.2-jdk
-    working_directory: ~/repo
-    environment:
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+  test_backend_ut:
+    executor: openjdk
     steps:
-      - checkout
+      - *restore_repo
+      - *restore_gradle_modules
       - run: chmod +x gradlew
-      - restore_cache:
-          keys:
-            - gradle-{{ checksum "build.gradle" }}
       - run:
           name: Unit Tests
           command: ./gradlew check jacocoTestReport
-      - run:
-          name: Codecov report
-          command: bash <(curl -s https://codecov.io/bash)
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: gradle-ut
+      - *persist_workspace
 
-  test_e2e:
-    docker:
-      - image: circleci/openjdk:11.0.2-jdk
-    working_directory: ~/repo
-    environment:
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+  test_frontend_e2e:
+    executor: openjdk # TODO: node chrome executor for e2e
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - gradle-e2e
-#      - run:
+      - *restore_repo
+      - *restore_gradle_modules
+      - *restore_npm_modules
+#      - run: TODO: frontend e2e tests
 #          name: e2e
 #          command: ./gradlew e2etest
 
+  test_frontend_ut:
+    executor: openjdk
+    steps:
+      - *restore_repo
+      - *restore_gradle_modules
+      - *restore_npm_modules
+  #      - run: TODO: frontend ut tests
+  #          name: e2e
+  #          command: ./gradlew ut
+
   stats:
-    docker:
-      - image: circleci/openjdk:11.0.2-jdk
-    working_directory: ~/repo
-    environment:
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+    executor: openjdk
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - gradle-ut
-      # move here codecov
+      - *attach_workspace
+      - *restore_repo
+      - run:
+          name: Codecov report
+          command: bash <(curl -s https://codecov.io/bash
 
-  deploy:
-    docker:
-      - image: circleci/openjdk:11.0.2-jdk
-    working_directory: ~/repo
-    environment:
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+  deploy_gke:
+    executor: openjdk
     steps:
-      - checkout
+      - *attach_workspace
+      - *restore_repo
+      # TODO GKE integration
 
+# -----------------
+
+# -----------------
+# Workflows
 workflows:
-  version: 2
-  branch_pipeline:
+  build_test_deploy:
     jobs:
-      - build
-      - test_ut:
+      - checkout_code
+      - build_deps:
+          requires:
+            - checkout_code
+      - build:
+          requires:
+            - build_deps
+      - test_backend_ut:
           requires:
             - build
-      - test_e2e:
+      - test_frontend_e2e:
+          requires:
+            - build
+      - test_frontend_ut:
           requires:
             - build
       - stats:
           requires:
-            - test_ut
-            - test_e2e
-      - deploy:
+            - test_backend_ut
+            - test_frontend_e2e
+            - test_frontend_ut
+      - deploy_gke:
           requires:
-            - test_ut
-            - test_e2e
+            - test_backend_ut
+            - test_frontend_e2e
+            - test_frontend_ut
+          #filters:
+            #branches:
+            #  only: develop # TODO: change to master after GKE will be ok
