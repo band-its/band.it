@@ -172,8 +172,8 @@ jobs:
       - run:
           name: Deploy to Kubernetes
           command: |
-            envsubst < /home/circleci/repo/k8s.yml > /home/circleci/repo/patched_k8s.yml
-            kubectl apply -f /home/circleci/repo/patched_k8s.yml
+            envsubst < /home/circleci/repo/k8s.yaml > /home/circleci/repo/patched_k8s.yaml
+            kubectl apply -f /home/circleci/repo/patched_k8s.yaml
             kubectl rollout status deployment/config
             kubectl rollout status deployment/registry
             kubectl rollout status deployment/ui-service
