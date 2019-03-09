@@ -18,12 +18,12 @@ references:
     restore_cache:
       keys:
         - v1-repo-{{ .Branch }}-{{ .Revision }}
-        - v1-repo-{{ .Branch }}
-        - v1-repo
+        - v1-repo-{{ .Branch }}-
+        - v1-repo-
   gradle_cache_key: &gradle_cache_key
                    v1-dependency-gradle-{{ checksum "build.gradle" }}
   gradle_backup_cache_key: &gradle_backup_cache_key
-                          v1-dependency-gradle
+                          v1-dependency-gradle-
   restore_gradle_modules: &restore_gradle_modules
     restore_cache:
       keys:
@@ -32,7 +32,7 @@ references:
   npm_cache_key: &npm_cache_key
                       v1-dependency-npm-{{ checksum "build.gradle" }}   #TODO: correct when anguler will be included (frontend/package.json)
   npm_backup_cache_key: &npm_backup_cache_key
-                             v1-dependency-npm
+                             v1-dependency-npm-
   restore_npm_modules: &restore_npm_modules
     restore_cache:
       keys:
@@ -72,7 +72,7 @@ jobs:
       - *restore_repo
       - *restore_gradle_modules
       - *restore_npm_modules
-      - run: gradlew downloadDependencies
+      - run: ./gradlew downloadDependencies
       # TODO: here will be npm download dependencies task
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
