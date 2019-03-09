@@ -7,7 +7,6 @@ plugins {
 }
 
 dependencies {
-    runtimeOnly project(':frontend')
     implementation 'org.springframework.cloud:spring-cloud-starter'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
@@ -19,6 +18,8 @@ dependencies {
     implementation 'javax.activation:activation:1.1.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'javax.xml.bind:jaxb-api'
+
+    runtimeOnly project(':frontend')
 }
 
 dependencyManagement {
@@ -29,13 +30,10 @@ dependencyManagement {
 
 jar {
     dependsOn(':frontend:build')
-
     into('static') {
         from "${project(':frontend').projectDir}/dist"
     }
 }
-
-processResources.dependsOn(':frontend:build')
 
 test {
     testLogging {

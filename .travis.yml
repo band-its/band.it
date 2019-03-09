@@ -10,7 +10,7 @@ addons:
       - google-chrome-stable
 
 install:
-  - nvm install 8.9.3
+  - nvm install 10.15.3
 before_script:
   - chmod +x gradlew
 script:

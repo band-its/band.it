@@ -12,5 +12,13 @@ task testCI(type: NpmTask) {
     args = ['run', 'test-ci']
 }
 
-//clean.dependsOn 'npm_run_clean'
-build.dependsOn 'npm_run_build'
+task buildClient(type: NpmTask, dependsOn: [npmInstall]) {
+    args = ['run-script', 'buildProd']
+}
+
+task copyClient(type: Copy, dependsOn: [buildClient]) {
+    from 'dist'
+    into "${buildDir}/resources/main/static"
+}
+
+processResources.dependsOn copyClient
