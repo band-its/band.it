@@ -10,7 +10,7 @@ references:
       at: *workspace_root
   persist_workspace: &persist_workspace
     persist_to_workspace:
-      root: /root/circleci
+      root: /home/circleci
       paths:
         - repo/build
         - repo/*/build
