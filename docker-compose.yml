@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 services:
   config:
     image: bandits/bandit-config
@@ -12,8 +12,7 @@ services:
     image: bandits/bandit-registry
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     ports:
       - 8761:8761
     logging:
@@ -25,8 +24,7 @@ services:
     image: bandits/bandit-ui-service
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     ports:
       - 80:4000
     logging:
