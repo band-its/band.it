@@ -10,10 +10,10 @@ references:
       at: *workspace_root
   persist_workspace: &persist_workspace
     persist_to_workspace:
-      root: *workspace_root
+      root: ~
       paths:
-        - build
-        - /*/build
+        - ~
+        - repo/*/build
   restore_repo: &restore_repo
     restore_cache:
       keys:
