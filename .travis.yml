@@ -14,7 +14,7 @@ install:
 before_script:
   - chmod +x gradlew
 script:
-  - ./gradlew clean check jacocoTestReport testCI
+  - ./gradlew clean check jacocoTestReport testCI testE2E
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 

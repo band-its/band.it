@@ -12,6 +12,10 @@ task testCI(type: NpmTask) {
     args = ['run', 'test-ci']
 }
 
+task testE2E(type: NpmTask) {
+    args = ['run', 'e2e']
+}
+
 task buildClient(type: NpmTask, dependsOn: [npmInstall]) {
     args = ['run-script', 'buildProd']
 }
