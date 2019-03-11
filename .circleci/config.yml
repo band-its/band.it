@@ -105,10 +105,8 @@ jobs:
       - *persist_workspace
 
   build_deploy_docker:
-    executor: openjdk
+    machine: true
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
       - *attach_workspace
       - *restore_repo
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
