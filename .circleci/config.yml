@@ -142,7 +142,7 @@ jobs:
       - *restore_gradle_modules
       - run: chmod +x gradlew
       - run:
-          name: Unit Tests
+          name: Backend Unit Tests
           command: ./gradlew check jacocoTestReport
       - *persist_workspace
 
@@ -167,8 +167,8 @@ jobs:
       - *restore_npm_modules
       - run: chmod +x gradlew
       - run:
-        name: e2e
-        command: ./gradlew testCI
+          name: Frontend Unit Tests
+          command: ./gradlew testCI
       - *persist_workspace
 
   stats:
