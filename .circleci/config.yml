@@ -104,6 +104,30 @@ jobs:
           destination: build
       - *persist_workspace
 
+  build_deploy_docker:
+    executor: openjdk
+    steps:
+      - *attach_workspace
+      - *restore_repo
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
+      - run:
+          name: Building & pushing docker image for- config
+          command: |
+            docker build -t bandits/bandit-config ./config
+            docker push bandits/bandit-config:latest
+      - run:
+          name: Building & pushing docker image for- registry
+          command: |
+            docker build -t bandits/bandit-registry ./registry
+            docker push bandits/bandit-registry:latest
+      - run:
+          name: Building & pushing docker image for- ui-service
+          command: |
+            docker build -t bandits/bandit-ui-service ./ui-service
+            docker push bandits/bandit-registry:latest
+      
   test_backend_ut:
     executor: openjdk
     steps:
@@ -201,6 +225,11 @@ workflows:
       - test_frontend_ut:
           requires:
             - build
+      - build_deploy_docker:
+          requires:
+            - test_backend_ut
+            - test_frontend_e2e
+            - test_frontend_ut
       - stats:
           requires:
             - test_backend_ut
