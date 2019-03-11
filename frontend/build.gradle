@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id "com.moowork.node" version "1.2.0"
+}
+
+node {
+    version = '10.15.3'
+    download = false // use installed node/npm
+}
+
+task testCI(type: NpmTask) {
+    args = ['run', 'test-ci']
+}
+
+task testE2E(type: NpmTask) {
+    args = ['run', 'e2e']
+}
+
+task buildClient(type: NpmTask, dependsOn: [npmInstall]) {
+    args = ['run-script', 'buildProd']
+}
+
+task copyClient(type: Copy, dependsOn: [buildClient]) {
+    from 'dist'
+    into "${buildDir}/resources/main/static"
+}
+
+processResources.dependsOn copyClient
