@@ -107,10 +107,10 @@ jobs:
   build_deploy_docker:
     executor: openjdk
     steps:
-      - *attach_workspace
-      - *restore_repo
       - setup_remote_docker:
           docker_layer_caching: true
+      - *attach_workspace
+      - *restore_repo
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
       - run:
           name: Building & pushing docker image for- config
