@@ -1,29 +1,37 @@
-HELP.md
+### Gradle ###
 .gradle
 /build/
 */build/*
 !gradle/wrapper/gradle-wrapper.jar
+/coverage
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
+### IDEs and editors ###
 .idea
 *.iws
 *.iml
 *.ipr
-/out/
-*/out/*
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-### NetBeans ###
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+# System Files
+.DS_Store
+Thumbs.db
