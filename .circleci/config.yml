@@ -30,7 +30,7 @@ references:
         - *gradle_cache_key
         - *gradle_backup_cache_key
   npm_cache_key: &npm_cache_key
-                   v1-dependency-npm-{{ checksum "build.gradle" }}   #TODO: correct when anguler will be included (frontend/package.json)
+                   v1-dependency-npm-{{ checksum "frontend/package.json" }}
   npm_backup_cache_key: &npm_backup_cache_key
                           v1-dependency-npm-
   restore_npm_modules: &restore_npm_modules
@@ -107,6 +107,10 @@ jobs:
           paths:
             - ~/repo/.gradle
           key: *gradle_cache_key
+      - save_cache:
+          paths:
+            - ~/repo/frontend/node_modules
+          key: * npm_cache_key
       - store_artifacts:
           path: ~/repo/*/build
           destination: build
