@@ -14,6 +14,7 @@ references:
       paths:
         - repo/build
         - repo/*/build
+        - repo/*/coverage
   restore_repo: &restore_repo
     restore_cache:
       keys:
