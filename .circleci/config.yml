@@ -236,16 +236,14 @@ workflows:
       - test_frontend_ut:
           requires:
             - build
-      - build_deploy_docker:
-          requires:
-            - test_backend_ut
-            - test_frontend_e2e
-            - test_frontend_ut
       - stats:
           requires:
             - test_backend_ut
             - test_frontend_e2e
             - test_frontend_ut
+      - build_deploy_docker:
+          requires:
+            - stats
       - deploy_gke:
           requires:
             - test_backend_ut
