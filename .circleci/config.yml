@@ -12,7 +12,7 @@ references:
     persist_to_workspace:
       root: /home/circleci
       paths:
-        - repo/build
+#        - repo/build
         - repo/*/build
         - repo/*/coverage
   restore_repo: &restore_repo
