@@ -94,7 +94,7 @@ jobs:
       # TODO: save node modules in cache here
 
   build:
-    executor: openjdk
+    executor: openjdk_node
     steps:
       - *restore_repo
       - *restore_gradle_modules
