@@ -246,9 +246,7 @@ workflows:
             - stats
       - deploy_gke:
           requires:
-            - test_backend_ut
-            - test_frontend_e2e
-            - test_frontend_ut
+            - stats
           filters:
             branches:
               only: master
