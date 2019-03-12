@@ -125,17 +125,17 @@ jobs:
       - run:
           name: Building & pushing docker image for- config
           command: |
-            docker build -t bandits/bandit-config ./config/.
+            docker build -t bandits/bandit-config config/
             docker push bandits/bandit-config:latest
       - run:
           name: Building & pushing docker image for- registry
           command: |
-            docker build -t bandits/bandit-registry ./registry/.
+            docker build -t bandits/bandit-registry registry/
             docker push bandits/bandit-registry:latest
       - run:
           name: Building & pushing docker image for- ui-service
           command: |
-            docker build -t bandits/bandit-ui-service ./ui-service/.
+            docker build -t bandits/bandit-ui-service ui-service/
             docker push bandits/bandit-registry:latest
 
   test_backend_ut:
