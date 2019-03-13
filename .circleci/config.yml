@@ -117,8 +117,8 @@ jobs:
       - *persist_workspace
 
   build_deploy_docker:
-    machine:
-      docker_layer_caching: true
+    docker:
+      - image: docker:18.06.3-ce-git
     steps:
       - *attach_workspace
       - *restore_repo
