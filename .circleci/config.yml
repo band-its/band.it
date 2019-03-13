@@ -124,7 +124,7 @@ jobs:
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
       - run: 
           name: ls 
-          command: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+          command: ls
       - run:
           name: Building & pushing docker image for- config
           command: |
