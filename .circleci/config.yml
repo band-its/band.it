@@ -122,10 +122,12 @@ jobs:
       - *attach_workspace
       - *restore_repo
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
+      - run: 
+          name: ls 
+          command: ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
       - run:
           name: Building & pushing docker image for- config
           command: |
-            ls
             docker build -t bandits/bandit-config config/
             docker push bandits/bandit-config:latest
       - run:
