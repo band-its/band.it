@@ -117,14 +117,12 @@ jobs:
       - *persist_workspace
 
   build_deploy_docker:
-    machine: true
+    machine:
+      docker_layer_caching: true
     steps:
       - *attach_workspace
       - *restore_repo
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
-      - run: 
-          name: ls 
-          command: ls
       - run:
           name: Building & pushing docker image for- config
           command: |
