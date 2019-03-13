@@ -125,6 +125,7 @@ jobs:
       - run:
           name: Building & pushing docker image for- config
           command: |
+            ls
             docker build -t bandits/bandit-config config/
             docker push bandits/bandit-config:latest
       - run:
