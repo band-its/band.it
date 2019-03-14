@@ -1,12 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-.maincontent {
-    background-color: rgb(41, 150, 201);
-}
+maincontent {}
 
-.footer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-}
+footer {}
