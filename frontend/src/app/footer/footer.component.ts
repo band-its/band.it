@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import './footer.component.css'
 
 @Component({
-  selector: '.app-footer',
+  selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })

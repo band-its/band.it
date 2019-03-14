@@ -1,10 +1,6 @@
-body {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-right: 90px;
-    margin-bottom: 25px;
-    text-align: center;
+.footer {
     font-family: verdana;
     font-size: 15px;
+    text-align: right;
+    margin-right: 30px;
 }

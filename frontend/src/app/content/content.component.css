@@ -1,6 +1,6 @@
-body {
+.maincontent {
     text-align: center;
-    font-family: verdana;
-    font-size: 40px;
-    margin-top: 300px;
+    background-color: rgb(49, 143, 187);
+    border-style: double;
+    border-width: thick;
 }
