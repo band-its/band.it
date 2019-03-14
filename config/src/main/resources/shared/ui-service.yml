@@ -11,6 +11,7 @@ ribbon:
   ConnectTimeout: 20000
 
 zuul:
+  prefix: '/1.0/api'
   ignoredServices: '*'
   host:
     connect-timeout-millis: 20000
@@ -19,7 +20,12 @@ zuul:
   routes:
     auth-service:
       path: /uaa/**
-      url: http://localhost:5000
+      url: http://auth-service:5000
+      stripPrefix: false
+      sensitiveHeaders:
+    account-service:
+      path: /accounts/**
+      url: http://account-service:5000
       stripPrefix: false
       sensitiveHeaders:
 
