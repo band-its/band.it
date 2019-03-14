@@ -1,0 +1,10 @@
+body {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 90px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-family: verdana;
+    font-size: 15px;
+}
