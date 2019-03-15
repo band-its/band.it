@@ -102,7 +102,7 @@ jobs:
       - run: chmod +x gradlew
       - run:
           name: Building backend services...
-          command: ./gradlew assemble
+          command: ./gradlew assemble -x test
       - save_cache:
           paths:
             - ~/repo/.gradle
@@ -116,7 +116,7 @@ jobs:
           destination: build
       - *persist_workspace
 
-  build_deploy_docker:
+  build_deploy_docker: # TODO: build and push iamges without building project
     docker:
       - image: circleci/openjdk:11.0.2-jdk-node-browsers
     steps:
@@ -126,7 +126,7 @@ jobs:
       - run: chmod +x gradlew
       - run:
           name: Building backend services...
-          command: ./gradlew assemble
+          command: ./gradlew assemble -x test
       - setup_remote_docker
       - run:
           name: Install Docker client
