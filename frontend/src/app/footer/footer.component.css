@@ -1,0 +1,10 @@
+footer {
+    font-family: verdana;
+    font-size: 15px;
+    text-align: right;
+    margin-right: 30px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
