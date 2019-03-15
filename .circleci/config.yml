@@ -123,6 +123,10 @@ jobs:
       - checkout
       - *attach_workspace
       - *restore_repo
+      - run: chmod +x gradlew
+      - run:
+          name: Building backend services...
+          command: ./gradlew assemble
       - setup_remote_docker
       - run:
           name: Install Docker client
@@ -131,11 +135,7 @@ jobs:
             VER="17.03.0-ce"
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            mv /tmp/docker/* /usr/bin
-      - run: chmod +x gradlew
-      - run:
-          name: Building backend services...
-          command: ./gradlew assemble
+            sudo mv /tmp/docker/* /usr/bin
       - run: /usr/local/bin/dockerd
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
       - run:
