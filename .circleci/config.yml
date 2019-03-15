@@ -118,7 +118,7 @@ jobs:
 
   build_deploy_docker:
     docker:
-      - image: openjdk
+      - image: docker:18.06.3-ce-git
     steps:
       - setup_remote_docker
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
