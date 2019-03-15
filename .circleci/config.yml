@@ -121,6 +121,8 @@ jobs:
       - image: docker:18.06.3-ce-git
     steps:
       - checkout
+      - *attach_workspace
+      - *restore_repo
       - setup_remote_docker
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
       - run:
