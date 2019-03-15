@@ -25,7 +25,7 @@ zuul:
       sensitiveHeaders:
     account-service:
       path: /accounts/**
-      url: http://account-service:5000
+      serviceId: account-service
       stripPrefix: false
       sensitiveHeaders:
 

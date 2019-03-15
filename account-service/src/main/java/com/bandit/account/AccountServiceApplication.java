@@ -11,11 +11,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableOAuth2Client
 @EnableFeignClients
 @EnableCircuitBreaker
-@EnableSwagger2
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AccountServiceApplication {
 
     public static void main(String[] args) {
