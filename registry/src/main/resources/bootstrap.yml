@@ -1,9 +1,10 @@
 spring:
+  profiles: prof
   application:
     name: registry
   cloud:
     config:
-      uri: http://${CONFIG_ADDRESS:config}:8888
+      uri: http://config:8888
       fail-fast: true
       password: user
       username: user
@@ -16,3 +17,12 @@ eureka:
     fetchRegistry: false
     server:
       waitTimeInMsWhenSyncEmpty: 0
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+

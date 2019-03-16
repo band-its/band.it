@@ -17,7 +17,9 @@ allprojects {
         mavenCentral()
         maven { url 'https://repo.spring.io/milestone' }
     }
+}
 
+subprojects {
     task downloadDependencies() {
         description 'Download all dependencies to the Gradle cache (speeds up CI process)'
         doLast {
