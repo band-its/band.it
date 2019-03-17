@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3.0'
 services:
   config:
     build: config
@@ -10,3 +10,8 @@ services:
 
   ui-service:
     build: ui-service
+
+  account-service:
+    build: account-service
+    ports:
+      - 6000:6000

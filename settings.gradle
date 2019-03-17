@@ -1,3 +1,3 @@
 rootProject.name = 'band-it'
 
-include 'config', 'registry', 'ui-service', 'frontend'
+include 'config', 'registry', 'ui-service', 'frontend', 'account-service'

@@ -76,25 +76,16 @@ executed.
 ### Deploying / Publishing
 CircleCI will take care of this.
 
-give instructions on how to build and release a new version
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-```shell
-packagemanager deploy your-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does.
+### Links and ports to local services
 
 ## Versioning
 
-We can maybe use [SemVer](http://semver.org/) for versioning. For the versions available, see the [link to tags on this repository](/tags).
+[SemVer](http://semver.org/) is used for Band-it versioning.
 
 
 ## Configuration
 
-Here you should write what are all of the configurations a user can enter when
-using the project.
+TODO: Write about configuration of production / development application startup modes.
 
 ## Tests
 
@@ -112,17 +103,14 @@ E2E tests:
 
 ## Style guide
 
-Explain your code style and show how to check it.
 
 ## Api Reference
 
-If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
+API doc is deployed using Swagger2 and can be accessed under http://localhost/swagger-ui.html when backend services are running.
 
 
 ## Database
 
-Explaining what database (and version) has been used. Provide download links.
-Documents your database design and schemas, relations etc... 
 
 ## Licensing
 

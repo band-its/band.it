@@ -9,8 +9,19 @@ hystrix:
 ribbon:
   ReadTimeout: 20000
   ConnectTimeout: 20000
+  eureka:
+    enabled: true
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false
 
 zuul:
+  prefix: '/1.0/api'
   ignoredServices: '*'
   host:
     connect-timeout-millis: 20000
@@ -19,7 +30,12 @@ zuul:
   routes:
     auth-service:
       path: /uaa/**
-      url: http://localhost:5000
+      url: http://auth-service:5000
+      stripPrefix: false
+      sensitiveHeaders:
+    account-service:
+      path: /accounts/**
+      serviceId: account-service
       stripPrefix: false
       sensitiveHeaders:
 
