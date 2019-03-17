@@ -2,43 +2,34 @@ plugins {
     id 'java'
     id 'idea'
     id 'org.springframework.boot' version '2.1.3.RELEASE'
-    id 'io.spring.dependency-management' version "1.0.7.RELEASE"
-    id 'jacoco'
+    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+    id "jacoco"
 }
 
 dependencies {
-    implementation 'org.springframework.cloud:spring-cloud-starter'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    //implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+    implementation 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream'
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
     implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
     implementation 'com.sun.xml.bind:jaxb-impl:2.3.2'
     implementation 'javax.activation:activation:1.1.1'
-    implementation 'io.springfox:springfox-swagger2:2.9.2'
-    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation "io.springfox:springfox-swagger2:2.9.2"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'javax.xml.bind:jaxb-api'
-
-    runtimeOnly project(':frontend')
 }
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
-}
-
-bootRun {
-    String activeProfile =  System.properties['spring.profiles.active']
-    systemProperty "spring.profiles.active", "${profile}"
-}
-
-jar {
-    dependsOn(':frontend:build')
-    into('static') {
-        from "${project(':frontend').projectDir}/dist"
     }
 }
 
