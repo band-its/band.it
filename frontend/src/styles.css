@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  width: 100%;
+  height: 15vh;
+  background-color: white;
+  position: relative;
+  box-shadow: 0 0 9px 1px;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
