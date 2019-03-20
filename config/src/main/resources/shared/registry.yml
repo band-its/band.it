@@ -1,2 +1,4 @@
+spring:
+  profiles: dev, prod, default
 server:
   port: 8761

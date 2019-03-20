@@ -1,5 +1,5 @@
 spring:
-  profiles: prof
+  profiles: prod, default
   application:
     name: registry
   cloud:

@@ -1,5 +1,5 @@
 spring:
-  profiles: prod
+  profiles: prod, default
   application:
     name: ui-service
   cloud:

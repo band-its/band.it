@@ -4,7 +4,7 @@ spring:
       server:
         native:
           search-locations: classpath://shared
-  profiles:
+  profiles: # need some help here... a want make some new profiles "dev, prod, default" but how use them with alerdy active profiles for auto config.
      active: native
   security:
     user:

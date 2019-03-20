@@ -26,6 +26,8 @@ subprojects {
             configurations.findAll { it.canBeResolved }.files
         }
     }
+
+    def profile = 'default'
 }
 
 jacocoTestReport {

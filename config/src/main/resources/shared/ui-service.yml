@@ -1,3 +1,6 @@
+spring:
+  profiles: dev, prod, default
+
 hystrix:
   command:
     default:
