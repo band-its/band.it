@@ -10,8 +10,7 @@ import { BandsComponent } from './bands/bands.component';
 import { SongsComponent } from './songs/songs.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { ContentComponent } from './content/content.component';
-import { FooterComponent } from './footer/footer.component';
+import { LayoutModule } from './shared/layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -22,14 +21,13 @@ import { FooterComponent } from './footer/footer.component';
     SongsComponent,
     SignUpComponent,
     SignInComponent,
-    ContentComponent,
-    FooterComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
