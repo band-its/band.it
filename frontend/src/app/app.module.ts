@@ -10,7 +10,8 @@ import { BandsComponent } from './bands/bands.component';
 import { SongsComponent } from './songs/songs.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { LayoutModule } from './shared/layout/layout.module';
+import { MainLayoutModule } from './layout/main-layout.module';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { LayoutModule } from './shared/layout/layout.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    LayoutModule
+    MainLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
