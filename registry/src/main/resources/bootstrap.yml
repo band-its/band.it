@@ -8,6 +8,8 @@ spring:
       fail-fast: true
       password: user
       username: user
+      profile: prod
+      name: registry
 
 eureka:
   instance:
@@ -29,6 +31,8 @@ spring:
       fail-fast: true
       password: user
       username: user
+      profile: dev
+      name: registry
 
 eureka:
   instance:

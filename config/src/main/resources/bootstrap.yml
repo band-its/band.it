@@ -1,10 +1,13 @@
 spring:
   cloud:
     config:
+      profiles:
+        active: native
       server:
         native:
-          search-locations: classpath://shared
-  profiles: dev, prod
+          search-locations: classpath:shared/
+          addLabelLocations: false
+  profiles: prod, default, dev
   profiles.include: native
   security:
     user:
