@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    config:
+      profiles:
+        active: native
+      server:
+        native:
+          search-locations: classpath:shared/
+          addLabelLocations: false
+  profiles: prod, default, dev
+  profiles.include: native
+  security:
+    user:
+      password: user
+
+server:
+  port: 8888
+

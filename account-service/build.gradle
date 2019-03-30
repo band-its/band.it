@@ -33,6 +33,11 @@ dependencyManagement {
     }
 }
 
+bootRun {
+    String activeProfile =  System.properties['spring.profiles.active']
+    systemProperty "spring.profiles.active", "${profile}"
+}
+
 test {
     testLogging {
         events 'PASSED', 'FAILED', 'SKIPPED'

@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'org.springframework.boot' version '2.1.3.RELEASE'
-    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+    id 'io.spring.dependency-management' version "1.0.7.RELEASE"
     id "jacoco"
 }
 
@@ -17,6 +17,11 @@ dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
+}
+
+bootRun {
+    String activeProfile =  System.properties['spring.profiles.active']
+    systemProperty "spring.profiles.active", "${profile}"
 }
 
 test {

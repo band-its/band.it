@@ -1,3 +1,6 @@
+spring:
+  profiles: dev, prod, default
+
 server:
   servlet:
     context-path: /accounts

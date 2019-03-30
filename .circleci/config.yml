@@ -12,8 +12,8 @@ references:
     persist_to_workspace:
       root: /home/circleci
       paths:
-        - repo/build
         - repo/*/build
+        - repo/*/coverage
   restore_repo: &restore_repo
     restore_cache:
       keys:
@@ -21,18 +21,18 @@ references:
         - v1-repo-{{ .Branch }}-
         - v1-repo-
   gradle_cache_key: &gradle_cache_key
-                   v1-dependency-gradle-{{ checksum "build.gradle" }}
+                      v1-dependency-gradle-{{ checksum "build.gradle" }}
   gradle_backup_cache_key: &gradle_backup_cache_key
-                          v1-dependency-gradle-
+                             v1-dependency-gradle-
   restore_gradle_modules: &restore_gradle_modules
     restore_cache:
       keys:
         - *gradle_cache_key
         - *gradle_backup_cache_key
   npm_cache_key: &npm_cache_key
-                      v1-dependency-npm-{{ checksum "build.gradle" }}   #TODO: correct when anguler will be included (frontend/package.json)
+                   v1-dependency-npm-{{ checksum "frontend/package.json" }}
   npm_backup_cache_key: &npm_backup_cache_key
-                             v1-dependency-npm-
+                          v1-dependency-npm-
   restore_npm_modules: &restore_npm_modules
     restore_cache:
       keys:
@@ -51,6 +51,14 @@ executors:
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
+  openjdk_node:
+    docker:
+      - image: circleci/openjdk:11.0.2-jdk-node-browsers
+    working_directory: ~/repo
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+
 # -----------------
 
 # -----------------
@@ -86,7 +94,7 @@ jobs:
       # TODO: save node modules in cache here
 
   build:
-    executor: openjdk
+    executor: openjdk_node
     steps:
       - *restore_repo
       - *restore_gradle_modules
@@ -94,73 +102,93 @@ jobs:
       - run: chmod +x gradlew
       - run:
           name: Building backend services...
-          command: ./gradlew assemble
+          command: ./gradlew assemble -x test
       - save_cache:
           paths:
-              - ~/repo/.gradle
+            - ~/repo/.gradle
           key: *gradle_cache_key
+      - save_cache:
+          paths:
+            - ~/repo/frontend/node_modules
+          key: *npm_cache_key
       - store_artifacts:
           path: ~/repo/*/build
           destination: build
       - *persist_workspace
 
-  build_deploy_docker:
-    machine: true
+  build_deploy_docker: # TODO: build and push iamges without building project
+    docker:
+      - image: circleci/openjdk:11.0.2-jdk-node-browsers
     steps:
+      - checkout
       - *attach_workspace
       - *restore_repo
+      - run: chmod +x gradlew
+      - run:
+          name: Building backend services...
+          command: ./gradlew assemble -x test
+      - setup_remote_docker
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            sudo mv /tmp/docker/* /usr/bin
       - run: docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
       - run:
           name: Building & pushing docker image for- config
           command: |
-            docker build -t bandits/bandit-config ./config
+            docker build -t bandits/bandit-config config/
             docker push bandits/bandit-config:latest
       - run:
           name: Building & pushing docker image for- registry
           command: |
-            docker build -t bandits/bandit-registry ./registry
+            docker build -t bandits/bandit-registry registry/
             docker push bandits/bandit-registry:latest
       - run:
           name: Building & pushing docker image for- ui-service
           command: |
-            docker build -t bandits/bandit-ui-service ./ui-service
+            docker build -t bandits/bandit-ui-service ui-service/
             docker push bandits/bandit-registry:latest
-      
+
   test_backend_ut:
-    executor: openjdk
+    executor: openjdk_node
     steps:
       - *attach_workspace
       - *restore_repo
       - *restore_gradle_modules
       - run: chmod +x gradlew
       - run:
-          name: Unit Tests
+          name: Backend Unit Tests
           command: ./gradlew check jacocoTestReport
       - *persist_workspace
 
   test_frontend_e2e:
-    executor: openjdk # TODO: node chrome executor for e2e
+    executor: openjdk_node # TODO: node chrome executor for e2e
     steps:
       - *attach_workspace
       - *restore_repo
       - *restore_gradle_modules
       - *restore_npm_modules
-#      - run: TODO: frontend e2e tests
-#          name: e2e
-#          command: ./gradlew e2etest
+      #      - run: TODO: frontend e2e tests
+      #          name: e2e
+      #          command: ./gradlew e2etest
       #- *persist_workspace
 
   test_frontend_ut:
-    executor: openjdk
+    executor: openjdk_node
     steps:
       - *attach_workspace
       - *restore_repo
       - *restore_gradle_modules
       - *restore_npm_modules
-  #      - run: TODO: frontend ut tests
-  #          name: e2e
-  #          command: ./gradlew ut
-      #- *persist_workspace
+      - run: chmod +x gradlew
+      - run:
+          name: Frontend Unit Tests
+          command: ./gradlew testCI
+      - *persist_workspace
 
   stats:
     executor: openjdk
@@ -223,21 +251,17 @@ workflows:
       - test_frontend_ut:
           requires:
             - build
-      - build_deploy_docker:
-          requires:
-            - test_backend_ut
-            - test_frontend_e2e
-            - test_frontend_ut
       - stats:
           requires:
             - test_backend_ut
             - test_frontend_e2e
             - test_frontend_ut
+      - build_deploy_docker:
+          requires:
+            - stats
       - deploy_gke:
           requires:
-            - test_backend_ut
-            - test_frontend_e2e
-            - test_frontend_ut
+            - stats
           filters:
             branches:
               only: master
