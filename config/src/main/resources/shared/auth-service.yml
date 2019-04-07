@@ -1,0 +1,30 @@
+spring:
+  profiles: prod, default
+  data:
+    mongodb:
+      host: auth-mongodb
+      username: user
+      password: user
+      database: band-it
+      port: 27017
+
+server:
+  servlet:
+    context-path: /uaa
+  port: 5000
+---
+
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      host: localhost
+      username: user
+      password: user
+      database: band-it
+      port: 27017
+
+server:
+  servlet:
+    context-path: /uaa
+  port: 5000
