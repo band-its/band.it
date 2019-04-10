@@ -14,6 +14,7 @@ import { HomepageComponent } from './homepage/homepage.component';
   ],
   exports: [
     FooterComponent,
+    HomepageComponent,
   ]
 })
 export class MainLayoutModule { }

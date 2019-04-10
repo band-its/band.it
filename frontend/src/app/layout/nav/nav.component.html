@@ -1,17 +1,28 @@
-<header>
-  <div class="container">
-    <div class="logo">
-      <div class="image">logo</div>
-      <a routerLink="/" class="webName">Band.It</a>
-    </div>
-    <nav>
-      <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/bands">Bands</a></li>
-        <li><a routerLink="/songs">Songs</a></li>
-        <li><a routerLink="/signIn">Sign In</a></li>
+<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-nav">
+  <div class="container-fluid">
+    <img src="../../../assets/logo/bandit.png" alt="">
+    <a routerLink="/" class="navbar-brand">Band.It</a>
+    <button class="navbar-toggler" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="mainmenu">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/bands" class="nav-link">Bands</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/songs" class="nav-link">Songs</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/signIn" class="nav-link">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/signUp" class="nav-link">Sign Up</a>
+        </li>
       </ul>
-    </nav>
-    <a routerLink="/signUp"><button class="signUp">Sign Up</button></a>
+    </div>
   </div>
-</header>
+</nav>

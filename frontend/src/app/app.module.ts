@@ -12,7 +12,7 @@ import { NavComponent } from './layout/nav/nav.component';
   declarations: [
     AppComponent,
     NavComponent,
-    ContentComponent
+    ContentComponent,
 
   ],
   imports: [

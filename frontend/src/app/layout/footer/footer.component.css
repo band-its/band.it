@@ -1,10 +1,38 @@
 footer {
-    font-family: verdana;
-    font-size: 15px;
-    text-align: right;
-    margin-right: 30px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    /* background-color: rgba(69, 24, 60); */
+    background-color: black;
+    color: rgb(217, 236, 240);
+    padding-top: 2rem;
+    box-shadow: 0px 0px 5px black;
+}
+
+hr.light {
+    border-top: 1px solid rgb(217, 236, 240);
+    width: 75%;
+    margin: 0.8rem auto 1rem auto;
+}
+
+footer p {
+    margin: 4px 0;
+    color: rgb(217, 236, 240);
+    font-size: 0.8rem;
+}
+
+hr.light-100 {
+    border-top: 1px solid rgb(217, 236, 240);
     width: 100%;
+    margin: 1.5rem auto;
+}
+
+.copyRights h5 {
+    padding: 0 0 15px;
+}
+
+h4 img {
+    width: 100px;
+    height: 100px;
+}
+
+h4 a {
+    color: rgb(217, 236, 240);
 }

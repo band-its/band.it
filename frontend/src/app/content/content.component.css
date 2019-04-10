@@ -1,7 +1,11 @@
 .maincontent {
-    text-align: center;
-    background-color: rgb(49, 143, 187);
-    border-style: double;
-    border-width: thick;
-    background-color: rgb(41, 150, 201);
+    position: relative;
+    height: 7vh;
+}
+
+.maincontent h5 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
