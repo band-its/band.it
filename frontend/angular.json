@@ -131,6 +131,41 @@
           }
         }
       }
+    },
+    "@acme/lib1": {
+      "root": "projects/acme/lib1",
+      "sourceRoot": "projects/acme/lib1/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/acme/lib1/tsconfig.lib.json",
+            "project": "projects/acme/lib1/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/acme/lib1/src/test.ts",
+            "tsConfig": "projects/acme/lib1/tsconfig.spec.json",
+            "karmaConfig": "projects/acme/lib1/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/acme/lib1/tsconfig.lib.json",
+              "projects/acme/lib1/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "bandit-frontend"
