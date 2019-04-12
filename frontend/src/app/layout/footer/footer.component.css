@@ -1,5 +1,5 @@
-footer {
-    /* background-color: rgba(69, 24, 60); */
+/* footer {
+    background-color: rgba(69, 24, 60);
     background-color: black;
     color: rgb(217, 236, 240);
     padding-top: 2rem;
@@ -35,4 +35,50 @@ h4 img {
 
 h4 a {
     color: rgb(217, 236, 240);
+} */
+
+footer {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding-top: 1rem;
+}
+
+.row {
+    margin: 0px;
+}
+
+footer img {
+    height: 4rem;
+    margin: 1.5rem 0;
+}
+
+footer strong {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+footer p {
+    font-weight: 500;
+}
+
+footer a {
+    color: white;
+}
+
+footer .fab {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-right: 0.8rem;
+    transition: .2s;
+}
+
+footer .fab:hover {
+    color: #333;
+}
+
+hr.socket {
+    width: 100%;
+    border-top: 2px solid white;
+    margin-top: 3rem;
 }
