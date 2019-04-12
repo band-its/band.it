@@ -3,7 +3,7 @@ footer {
     background-color: black;
     color: rgb(217, 236, 240);
     padding-top: 2rem;
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 10px black;
 }
 
 hr.light {

@@ -1,0 +1,30 @@
+.btn {
+  color: white;
+  border-color: transparent;
+  margin: 0 8px;
+  border-radius: 15px;
+
+}
+
+.table {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+}
+
+.btn:hover {
+  background-color: black;
+}
+
+.bandView {
+  background-color: #555;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.pagination {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-50%)
+}

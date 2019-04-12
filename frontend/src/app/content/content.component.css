@@ -1,6 +1,7 @@
 .maincontent {
     position: relative;
-    height: 7vh;
+    height: 6vh;
+    background-color: rgba(0, 21, 55, 0.95);
 }
 
 .maincontent h5 {
@@ -8,4 +9,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .maincontent {
+        background-color: rgba(0, 21, 55);
+    }
 }
