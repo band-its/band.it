@@ -5,6 +5,7 @@
 */out/*
 !gradle/wrapper/gradle-wrapper.jar
 /coverage
+/target
 
 ### IDEs and editors ###
 .idea
