@@ -11,6 +11,11 @@ services:
   ui-service:
     build: ui-service
 
+  auth-service:
+    build: auth-service
+    ports:
+      - 5000:5000
+
   account-service:
     build: account-service
     ports:
