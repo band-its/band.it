@@ -1,21 +1,13 @@
 .maincontent {
-    position: relative;
-    height: 6vh;
-    background-color: rgba(0, 21, 55, 0.95);
+    background-color: #0f1617;
 }
 
-.maincontent h5 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+small .fab {
     color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1.1rem;
+    transition: .3s;
 }
 
-@media (max-width: 768px) {
-    .maincontent {
-        background-color: rgba(0, 21, 55);
-    }
+small .fab:hover {
+    color: #ff6977;
 }

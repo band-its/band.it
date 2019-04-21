@@ -1,112 +1,28 @@
-.carousel-inner {
-  position: relative;
-  width: 100%;
-  height: 84vh;
-}
-
-.carousel-inner img {
-  width: 100%;
-}
-
-.carousel-caption {
-  position: absolute;
-  top: 41%;
-  transform: translateY(-50%);
-}
-
-.carousel-caption h1 {
-  font-size: 400%;
-  font-weight: 500;
-  text-transform: uppercase;
-  text-shadow: 3px 3px 10px black;
-  margin-bottom: 50px;
-}
-
 .container-fluid {
-  padding: 40px;
+  background-color: #0f1617;
+  overflow: hidden;
 }
 
-/* h2.connect {
-  text-transform: uppercase;
-  margin-top: 30px;
-  margin-bottom: 40px;
+.jumbotron-fluid {
+  height: 86vh;
+  background: url('../../../assets/banner/koncert-banner.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
-.social a {
-  font-size: 4.5em;
-  padding: 3rem 4rem;
+.banner-text {
+  position: relative;
 }
 
-.fa-facebook {
-  color: #3b5998;
+.container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
-.fa-twitter {
-  color: #00aced;
-}
-
-.fa-google-plus-g {
-  color: #dd4b39;
-}
-
-.fa-instagram {
-  color: #517fa4;
-}
-
-.social a {
-  font-size: 4.5em;
-  padding: 2rem 3rem;
-}
-
-.fa-facebook:hover,
-.fa-twitter:hover,
-.fa-google-plus-g:hover,
-.fa-instagram:hover {
-  color: #d2d2d2;
-} */
-
-
-
-/* Media queries */
-@media (max-width: 992px) {
-  .social a {
-    font-size: 4em;
-    padding: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .carousel-inner {
-    height: 100%;
-  }
-
-  .social a {
-    font-size: 3.5em;
-    padding: 1.5rem;
-  }
-
-  .carousel-caption h1 {
-    font-size: 300%;
-    margin-bottom: 10px;
-  }
-
-  .carousel-caption .btn {
-    font-size: 70%;
-  }
-}
-
-@media (max-width: 576px) {
-  .carousel-caption h1 {
-    font-size: 250%;
-    margin-bottom: 5px;
-  }
-
-  .carousel-caption .btn {
-    font-size: 50%;
-  }
-
-  .social a {
-    font-size: 3em;
-    padding: 1rem;
-  }
+.banner-text h1 span {
+  color: #ff6977;
 }

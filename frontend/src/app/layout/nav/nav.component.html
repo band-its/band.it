@@ -1,28 +1,27 @@
-<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-nav">
-  <div class="container-fluid">
-    <img src="../../../assets/logo/bandit.png" alt="">
-    <a routerLink="/" class="navbar-brand">Band.It</a>
-    <button class="navbar-toggler" (click)="toggleNavbar()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a routerLink="/" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/bands" class="nav-link">Bands</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/songs" class="nav-link">Songs</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/signIn" class="nav-link">Sign In</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/signUp" class="nav-link">Sign Up</a>
-        </li>
-      </ul>
-    </div>
+<nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-1 sticky-top">
+  <img src="../../../assets/logo/bandit.png" alt="">
+  <a routerLink="/" class="navbar-brand ml-2">Band<span>.It</span></a>
+  <button class="navbar-toggler" data-toggle="collapse" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+          true}" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/bands" routerLinkActive="active-link" class="nav-link">Bands</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/songs" routerLinkActive="active-link" class="nav-link">Songs</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/signIn" routerLinkActive="active-link" class="nav-link">Sign In</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/signUp" routerLinkActive="active-link" class="nav-link">Sign Up</a>
+      </li>
+    </ul>
   </div>
 </nav>
