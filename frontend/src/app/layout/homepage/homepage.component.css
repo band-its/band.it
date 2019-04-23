@@ -10,19 +10,15 @@
   background-size: cover;
 }
 
-.banner-text {
-  position: relative;
-}
-
 .container {
   width: 100%;
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   color: white;
 }
 
-.banner-text h1 span {
+span {
   color: #ff6977;
 }
