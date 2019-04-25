@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavComponent } from './nav.component';
+import { by, By } from 'protractor';
+import { CssSelector } from '@angular/compiler';
 
 describe('NavComponent', () => {
   let component: NavComponent;
@@ -8,9 +10,9 @@ describe('NavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavComponent ]
+      declarations: [NavComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

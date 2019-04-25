@@ -14,7 +14,9 @@ export class NavComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
