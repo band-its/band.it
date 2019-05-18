@@ -18,13 +18,5 @@
       "es2018",
       "dom"
     ],
-    "paths": {
-      "@acme/lib1": [
-        "dist/acme/lib1"
-      ],
-      "@acme/lib1/*": [
-        "dist/acme/lib1/*"
-      ]
-    }
   }
 }
