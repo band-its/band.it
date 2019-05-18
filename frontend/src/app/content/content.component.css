@@ -1,7 +1,13 @@
 .maincontent {
-    text-align: center;
-    background-color: rgb(49, 143, 187);
-    border-style: double;
-    border-width: thick;
-    background-color: rgb(41, 150, 201);
+    background-color: #0f1617;
+}
+
+small .fab {
+    color: white;
+    font-size: 1.1rem;
+    transition: .3s;
+}
+
+small .fab:hover {
+    color: #ff6977;
 }

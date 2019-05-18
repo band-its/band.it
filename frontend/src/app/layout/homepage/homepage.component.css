@@ -1,0 +1,24 @@
+.container-fluid {
+  background-color: #0f1617;
+  overflow: hidden;
+}
+
+.jumbotron-fluid {
+  height: 86vh;
+  background: url('../../../assets/banner/koncert-banner.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+span {
+  color: #ff6977;
+}

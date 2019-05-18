@@ -1,10 +1,49 @@
 footer {
-    font-family: verdana;
-    font-size: 15px;
-    text-align: right;
-    margin-right: 30px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
     width: 100%;
+    background-color: black;
+    color: white;
+    padding-top: 1rem;
+}
+
+.row {
+    margin: 0px;
+}
+
+footer img {
+    height: 4rem;
+    margin: 1.5rem 0;
+}
+
+footer strong {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+footer p:nth-of-type(1) {
+    color: #ff6977;
+}
+
+footer p {
+    font-weight: 500;
+}
+
+footer a {
+    color: white;
+}
+
+footer .fab {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-right: 0.8rem;
+    transition: .2s;
+}
+
+footer .fab:hover {
+    color: #ff6977;
+}
+
+hr.socket {
+    width: 100%;
+    border-top: 2px solid #ff6977;
+    margin-top: 3rem;
 }
