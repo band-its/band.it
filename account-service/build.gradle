@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
-    id 'org.springframework.boot' version '2.1.3.RELEASE'
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
     id "io.spring.dependency-management" version "1.0.7.RELEASE"
     id "jacoco"
 }
@@ -36,7 +36,21 @@ dependencyManagement {
     }
 }
 
+task classpathJar(type: Jar) {
+    inputs.files sourceSets.test.runtimeClasspath
+
+    archiveName = "runboot-classpath.jar"
+    doFirst {
+        manifest {
+            def classpath = sourceSets.test.runtimeClasspath.files
+            attributes "Class-Path": classpath.collect {f -> f.toURI().toString()}.join(" ")
+        }
+    }
+}
+
 bootRun {
+    classpath = classpathJar.outputs.files
+    main = bootJar.mainClassName
     systemProperty "spring.profiles.active", "${profile}"
 }
 
