@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 
 @Component({
@@ -10,13 +11,29 @@ export class NavComponent implements OnInit {
 
   navbarOpen = false;
 
+  constructor(private oauthService: OAuthService) {
+  }
+
+  
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor() {
 
+  public login() {
+      this.oauthService.initImplicitFlow();
   }
+
+  public logoff() {
+      this.oauthService.logOut();
+  }
+
+  // public get name() {
+  //     let claims = this.oauthService.getIdentityClaims();
+  //     if (!claims) return null;
+  //     return claims.;
+  // }
+
 
   ngOnInit() {
   }
