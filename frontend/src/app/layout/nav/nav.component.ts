@@ -14,25 +14,25 @@ export class NavComponent implements OnInit {
   constructor(private oauthService: OAuthService) {
   }
 
-  
+
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
 
 
   public login() {
-      this.oauthService.initImplicitFlow();
+    this.oauthService.initImplicitFlow();
   }
 
   public logoff() {
-      this.oauthService.logOut();
+    this.oauthService.logOut();
   }
 
-  // public get name() {
-  //     let claims = this.oauthService.getIdentityClaims();
-  //     if (!claims) return null;
-  //     return claims.;
-  // }
+  public get name() {
+    let claims = this.oauthService.getIdentityClaims();
+    if (!claims) return null;
+    return claims
+  }
 
 
   ngOnInit() {

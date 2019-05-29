@@ -6,7 +6,7 @@ export const authConfig: AuthConfig = {
   issuer: 'https://steyer-identity-server.azurewebsites.net/identity',
 
   // URL of the SPA to redirect the user to after login
-  redirectUri: window.location.origin + '/index.html',
+  redirectUri: window.location.origin + '/home',
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   clientId: 'spa-demo',
