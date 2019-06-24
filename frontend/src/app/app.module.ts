@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainLayoutModule } from './layout/main-layout.module';
 import { ContentComponent } from './content/content.component';
 import { NavComponent } from './layout/nav/nav.component';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { NavComponent } from './layout/nav/nav.component';
     AppRoutingModule,
     NgbModule,
     MainLayoutModule,
+    HttpClientModule,
+    OAuthModule.forRoot()
 
   ],
   providers: [],

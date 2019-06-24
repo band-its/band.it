@@ -16,10 +16,11 @@
         <a routerLink="/songs" routerLinkActive="active-link" class="nav-link">Songs</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/signIn" routerLinkActive="active-link" class="nav-link">Sign In</a>
+        <a routerLink="#" class="nav-link" *ngIf="!this.name"  (click)="login()">Sign In</a>
+        <a routerLink="#" class="nav-link" *ngIf="this.name" (click)="logoff()">Logout</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/signUp" routerLinkActive="active-link" class="nav-link">Sign Up</a>
+        <a routerLink="#" routerLinkActive="active-link" *ngIf="!this.name" class="nav-link">Sign Up</a>
       </li>
     </ul>
   </div>
