@@ -28,9 +28,6 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private MongoUserDetailsService mongoUserDetailsService;
 
-    @Autowired
-    private Environment env;
-
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // @formatter:off
@@ -41,14 +38,14 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
                 .autoApprove(true)
                 .and()
                 .withClient("account-service")
-                .secret(env.getProperty("ACCOUNT_SERVICE_PASSWORD"))
+                .secret("$2y$12$K6Ldz6etvdJKRTBG53JaCeUZYHYLHgWrq/YG4rnXMAcIFlab/CeSW") //TODO we should get secret like env.getProperty("ACCOUNT_SERVICE_PASSWORD") or something similar
                 .authorizedGrantTypes("client_credentials", "refresh_token")
                 .scopes("server");
         // @formatter:on
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .tokenStore(tokenStore)
                 .authenticationManager(authenticationManager)
@@ -56,7 +53,7 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")

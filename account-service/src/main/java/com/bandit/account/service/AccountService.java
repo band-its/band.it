@@ -21,9 +21,7 @@ public class AccountService {
         Assert.isNull(accountRepository.findByName(user.getUsername()), "account already exists: " + user.getUsername());
 
         authClient.createUser(user);
-
-        Account account = new Account();
-        account.setName(user.getUsername());
+        Account account = new Account(user.getUsername());
 
         accountRepository.save(account);
         return account;

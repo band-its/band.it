@@ -2,8 +2,8 @@ plugins {
     id 'java'
     id 'idea'
     id 'org.springframework.boot' version '2.1.5.RELEASE'
-    id "io.spring.dependency-management" version "1.0.7.RELEASE"
-    id "jacoco"
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'jacoco'
 }
 
 dependencies {
@@ -16,7 +16,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     implementation 'org.springframework.cloud:spring-cloud-netflix-hystrix-stream'
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
@@ -36,21 +36,8 @@ dependencyManagement {
     }
 }
 
-task classpathJar(type: Jar) {
-    inputs.files sourceSets.test.runtimeClasspath
-
-    archiveName = "runboot-classpath.jar"
-    doFirst {
-        manifest {
-            def classpath = sourceSets.test.runtimeClasspath.files
-            attributes "Class-Path": classpath.collect {f -> f.toURI().toString()}.join(" ")
-        }
-    }
-}
-
 bootRun {
-    classpath = classpathJar.outputs.files
-    main = bootJar.mainClassName
+    main = 'com.bandit.account.AccountServiceApplication'
     systemProperty "spring.profiles.active", "${profile}"
 }
 

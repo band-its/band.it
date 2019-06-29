@@ -8,7 +8,8 @@ spring:
       fail-fast: true
       password: user
       username: user
-
+      profile: dev
+      name: account-service
 ---
 
 spring:
@@ -21,3 +22,5 @@ spring:
       fail-fast: true
       password: user
       username: user
+      profile: dev
+      name: account-service
