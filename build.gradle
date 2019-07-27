@@ -10,7 +10,7 @@ allprojects {
     targetCompatibility = JavaVersion.VERSION_11
 
     ext {
-        springCloudVersion = 'Greenwich.RELEASE'
+        springCloudVersion = 'Greenwich.SR2'
     }
 
     repositories {
