@@ -22,8 +22,8 @@ The above commands are used to download the repository and run docker-compose. A
 ### Built With
 
 Backend:
-* Spring Boot 2.1.3
-* Gradle 5.2
+* Spring Boot 2.1.6
+* Gradle 5.5
 
 Frontend:
 * Angular 7.2

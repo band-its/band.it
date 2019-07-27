@@ -52,11 +52,27 @@ services:
         max-size: "10m"
         max-file: "10"
 
+  auth-mongodb:
+    image: bandits/bandit-mongodb
+    restart: always
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
   account-service:
     image: bandits/bandit-account-service
     restart: always
     depends_on:
       - config
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+
+  account-mongodb:
+    image: bandits/bandit-mongodb
+    restart: always
     logging:
       options:
         max-size: "10m"
