@@ -13,13 +13,17 @@ public class UserService {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public void create(User user) {
-        Optional<User> existing = userRepository.findById(user.getUsername());
-        existing.ifPresent(it -> {
-            throw new IllegalArgumentException("user already exists: " + it.getUsername());
+        Optional<User> userById = userRepository.findById(user.getUsername());
+        userById.ifPresent(it -> {
+            throw new IllegalArgumentException("User with username" + it.getUsername() + " already exists.");
         });
 
         user.setPassword(encoder.encode(user.getPassword()));

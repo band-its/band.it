@@ -11,10 +11,14 @@ import javax.validation.Valid;
 @RestController
 public class AccountController {
 
-    @Autowired
     private AccountService accountService;
 
-    @RequestMapping(path = "/", method = RequestMethod.POST)
+    @Autowired
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    @PostMapping(path = "/")
     public Account createNewAccount(@Valid @RequestBody User user) {
         return accountService.create(user);
     }
