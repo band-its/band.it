@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   profiles: prod, default
   application:
     name: account-service
@@ -13,6 +15,8 @@ spring:
 ---
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   profiles: dev
   application:
     name: account-service

@@ -6,7 +6,7 @@ spring:
       username: user
       password: user
       database: band-it
-      port: 27017
+      port: 25000
 
 server:
   servlet:
