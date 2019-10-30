@@ -1,25 +1,25 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
   profiles: prod, default
   application:
     name: account-service
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     config:
       uri: http://config:8888
       fail-fast: true
       password: user
       username: user
-      profile: dev
+      profile: prod
       name: account-service
 ---
 
 spring:
-  main:
-    allow-bean-definition-overriding: true
   profiles: dev
   application:
     name: account-service
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     config:
       uri: http://localhost:8888
