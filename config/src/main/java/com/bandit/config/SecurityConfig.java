@@ -9,13 +9,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        // @formatter:off
         http
                 .authorizeRequests()
                 .antMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
+                .and()
+                .csrf().disable()
         ;
+         // @formatter:on
     }
 }

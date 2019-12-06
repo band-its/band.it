@@ -11,7 +11,22 @@ services:
   ui-service:
     build: ui-service
 
+  auth-service:
+    build: auth-service
+    ports:
+      - 5000:5000
+
+  auth-mongodb:
+    build: mongodb
+    ports:
+      - 25000:27017
+
   account-service:
     build: account-service
     ports:
       - 6000:6000
+
+  account-mongodb:
+    build: mongodb
+    ports:
+      - 26000:27017

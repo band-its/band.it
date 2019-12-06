@@ -1,5 +1,47 @@
 spring:
-  profiles: dev, prod, default
+  profiles: prod, default
+  data:
+    mongodb:
+      host: account-mongodb
+      database: band-it
+      port: 26000
+
+security:
+  oauth2:
+    client:
+      clientId: account-service
+      clientSecret: password
+      accessTokenUri: http://auth-service:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server
+
+server:
+  servlet:
+    context-path: /accounts
+  port: 6000
+
+feign:
+  hystrix:
+    enabled: true
+
+---
+
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      host: localhost
+      database: band-it
+      port: 28017
+
+security:
+  oauth2:
+    client:
+      clientId: account-service
+      clientSecret: password
+      accessTokenUri: http://localhost:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server
 
 server:
   servlet:

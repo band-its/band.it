@@ -2,22 +2,29 @@ spring:
   profiles: prod, default
   application:
     name: account-service
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     config:
       uri: http://config:8888
       fail-fast: true
       password: user
       username: user
-
+      profile: prod
+      name: account-service
 ---
 
 spring:
   profiles: dev
   application:
     name: account-service
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     config:
       uri: http://localhost:8888
       fail-fast: true
       password: user
       username: user
+      profile: dev
+      name: account-service
