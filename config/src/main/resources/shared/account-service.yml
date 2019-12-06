@@ -3,8 +3,6 @@ spring:
   data:
     mongodb:
       host: account-mongodb
-      username: user
-      password: user
       database: band-it
       port: 26000
 
@@ -12,7 +10,7 @@ security:
   oauth2:
     client:
       clientId: account-service
-      clientSecret: $2y$12$K6Ldz6etvdJKRTBG53JaCeUZYHYLHgWrq/YG4rnXMAcIFlab/CeSW
+      clientSecret: password
       accessTokenUri: http://auth-service:5000/uaa/oauth/token
       grant-type: client_credentials
       scope: server
@@ -33,8 +31,6 @@ spring:
   data:
     mongodb:
       host: localhost
-      username: user
-      password: user
       database: band-it
       port: 28017
 
@@ -42,7 +38,7 @@ security:
   oauth2:
     client:
       clientId: account-service
-      clientSecret: $2y$12$K6Ldz6etvdJKRTBG53JaCeUZYHYLHgWrq/YG4rnXMAcIFlab/CeSW
+      clientSecret: password
       accessTokenUri: http://localhost:5000/uaa/oauth/token
       grant-type: client_credentials
       scope: server
